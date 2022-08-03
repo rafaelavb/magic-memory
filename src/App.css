@@ -20,5 +20,6 @@ button:hover {
   margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* displays in four different columns using 1 fraction four times */
   grid-gap: 20px;
 }
