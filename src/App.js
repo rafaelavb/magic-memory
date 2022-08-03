@@ -33,7 +33,7 @@ function App() {
     //The map method fires a function for each item in the new shuffled array. For each item, we add a random id property. Each item is represented by the 'card' object in the .map function.
 
     setCards(shuffledCards)
-    //When the shuffleCards function is called, it will generate the shuffledCards and then update the cards state to be shuffledCards
+    // When the shuffleCards function is called, it will generate the shuffledCards and then update the cards state to be shuffledCards
     setTurns(0)
   }
 
@@ -43,6 +43,19 @@ function App() {
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+
+      <div className="card-grid">
+        {cards.map((card) => (
+          //map through the cards array with the map method and then take each individual card in the array and return a template for the card.
+          <div className="card" key={card.id}>
+            {/* the parent element needs a key property so the key is going to be equal to the card id */}
+            <div>
+              <img className="front" src={card.src} alt="card front" />
+              <img className="back" src="/img/cover.png" alt="card back" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
