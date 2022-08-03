@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import SingleCard from './components/SingleCard'
 
 //images are constant and never need to change so dont need to be stored in any component state. By creating the const cardImages outside of the cards array, it wont be recreated everytime the component is re-evaluated
 
@@ -47,13 +48,8 @@ function App() {
       <div className="card-grid">
         {cards.map((card) => (
           //map through the cards array with the map method and then take each individual card in the array and return a template for the card.
-          <div className="card" key={card.id}>
-            {/* the parent element needs a key property so the key is going to be equal to the card id */}
-            <div>
-              <img className="front" src={card.src} alt="card front" />
-              <img className="back" src="/img/cover.png" alt="card back" />
-            </div>
-          </div>
+          <SingleCard key={card.id} card={card} />
+          //nested SingleCard component and add on key property. Pass down the prop 'card' so we can destructure it from the props in the component SingleCard file
         ))}
       </div>
     </div>
