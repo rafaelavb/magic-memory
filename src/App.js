@@ -12,10 +12,15 @@ const cardImages = [
   { src: '/img/shield-1.png' },
   { src: '/img/sword-1.png' },
 ]
+//State
 
 function App() {
   const [cards, setCards] = useState([])
   const [turns, setTurns] = useState(0)
+  const [choiceOne, setChoiceOne] = useState(null)
+  const [choiceTwo, setChoiceTwo] = useState(null)
+  //When a user clicks on the first card we will update the state to be choiceOne which will become that card
+  //When a user clicks on the second card, we will update the state to be choiceTwo which will become that card
 
   // Shuffle Cards function //
 
@@ -38,7 +43,12 @@ function App() {
     setTurns(0)
   }
 
-  console.log(cards, turns)
+  //handle a choice
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
+  //Ternary operator
+  //a condition followed by a question mark ( ? ), then an expression to execute if the condition is truthy followed by a colon ( : ), and finally the expression to execute if the condition is falsy.
 
   return (
     <div className="App">
@@ -48,8 +58,9 @@ function App() {
       <div className="card-grid">
         {cards.map((card) => (
           //map through the cards array with the map method and then take each individual card in the array and return a template for the card.
-          <SingleCard key={card.id} card={card} />
+          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
           //nested SingleCard component and add on key property. Pass down the prop 'card' so we can destructure it from the props in the component SingleCard file
+          //pass down the handleChoice function as a prop so we can call it in the SingleCard function
         ))}
       </div>
     </div>
